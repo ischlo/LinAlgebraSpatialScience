@@ -9,20 +9,45 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Introduction 
 
-$\frac{x}{sin(x)}$
+This online resource is inteded to help fill a certain gap that non-technical people might find when studying spatial data science. It does not aim at covering the material at a college science degree level, but rather in a simple way present the main results, how are they obtained and most importantly how are they usefull. It is all wrapped up in the R working environment provided by Rstudio. (have a section that explains installation ?)
+Let's start with the most basic things so that the essentials are clarified, the foundation is strong and we are ready climb up. 
 
-```{r cars}
-summary(cars)
+### Variables
+We call a variable something that is not necessarily known and that changes independently of the system we are dealing with. Variables can be represented in different ways, but the most usefull and frequent is to assign them to a letter, x or y for example.
+
+#### Sets
+When we are dealing with multiple variables, or variable take multiple values, it is convenient to define sets. Actually, sets are a very important part of math and it can get very complicated, we will be working with them on a very basic level for now. Sets are usually named with capital letters, like A, B, C, R, N etc... We can specify the elements that belong to a specific set by including them in semi colons, for example the infinite set of even numbers $\{0,2,4,6,8,...\}$. Some sets have conventional names, like the set of positie integers $N = \{1,2,3,4,5,6,7,8,9,10,...\}$, or the set of integers $Z = \{...,-5,-4,-3,-2,-1,0,1,2,3,4,5,...\}$. From these definitions, we can see that actually the whole set $N$ is included in $Z$, in this case we can write $N \subset Z$. It's called a subset. 
+
+##### Operations on sets 
+
+Let's have a look at what we can do with sets. Let's have 2 exmaple sets: $A = \{ a,b,c,d,e,f\}$ and $B = \{d,e,f,g,h\}$. There is a multitude of operations that can be performed with sets and with elements of sets. Let's look at the some basic ones. First, the union of sets, which is also a set, denoted $C = A \cup B = \{a,b,c,d,e,f,g,h\}$. C is a set that has all the elements of A and B, it is the result of the union of sets. Note that we don't count elements twice.
+
+We also have intersection of sets, $D = A \cap B = \{d,e,f\}$, in which we have only those elements that are both in A and B. 
+Sometimes, we can have sets in which the values are continous, in this case we will use intervals to specify them. 
+##### Intervals
+When we are working with variables, we can be intrested in how our system behaves for some specific values of the variable. In that case we define intervals on which we consider the variable. For example we want to investigate our variable when it takes values between 0 and 1 included. It is usually denoted as follows: $x \in [0,1]$. Let's deconstruct this notation, x is the name of the variable, when we want to specify that it belongs to something (an interval for example !), we note it with the $\in$ symbol, and then we give the values, $[0,1]$. Again, here, nothing comes out of the blue. The square brackets on both sides mean that the extreme values of the interval are included in it. Otherwise we would have put circle ones and defined it this way : $x \in (0,1)$. In some cases, we will be intrested in only one border value of the interval, say 1,  and not the other, say 0. In this case the we would write $x \in (0,1]$.
+#### Functions 
+Variables are usually involved in various relationships with other elements, these relationships are represented by functions, that we denote f(x), or g(x) or any other letter and within the brackets we specify the variables on which this function depends. This means that the output of a function will depend on the values that the variables takes. Let's have a look at the function $f(x) = x^2$. Again, x here can take any value that is a real number, so from $(-\infty +\infty)$. What is the output of this function ? Well, it is the value of the variable multiplied by itself. So if the variable has a value of 2, the function will take the value of $2*2 = 4$. This type of function might seem very simple at first glance, but it is widely used and found throughout various phenomena in science. The most simple example is the area of a square with respect to its side length. So if in our work we are looking at areas of blocks in a city and we know the length of street segements, we can easily find it by taking the square of the length, assuming the road grid we are working with is square. 
+
+#### Axes, coordinates and representation
+
+
+
+```{r echo=TRUE}
+
+x <- c(-100:100)
+
+square <- function(x) {
+  return(x*x)
+}
+
+plot(x,square(x), type = "l", col = "red", ylab = "f(x)")
+
 ```
 
-## Including Plots
+This chunk of code, although short, contains a lot of information, mainly about the programming language we are working with, R. R is a vector based language which means that you encode each variable as an ordered set of elements. In this case and for now, we looked at the most simple variable, which is just 1 number, x. It can take the value of any real number, but we limit ourselves to an interval between -100 and 100, this is done by the first row of code. Next, we define our function, the proper way to do it is start with the name, square, then specify that it will be a function, and then put into brackets the variable that the function depends on. As of now we have only one, but it can be more as we will see. The body of the function is contained within the semi colons ${...}$ and contains all the operations that the function does to the variable, and the final output is returned by the $return()$ command.
+Finally we plot it. 
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
